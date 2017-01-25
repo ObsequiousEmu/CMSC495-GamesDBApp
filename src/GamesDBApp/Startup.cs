@@ -12,6 +12,7 @@ using Microsoft.Extensions.Logging;
 using GamesDBApp.Data;
 using GamesDBApp.Models;
 using GamesDBApp.Services;
+using MySQL.Data.Entity.Extensions;
 
 namespace GamesDBApp
 {
@@ -46,11 +47,13 @@ namespace GamesDBApp
             services.AddApplicationInsightsTelemetry(Configuration);
 
             services.AddDbContext<GamesContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+            //TODO: Temporarily left for ease of troubleshooting, clean me later 
+//                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                    options.UseMySQL(Configuration["MySqlConn"]));
 
             services.AddDbContext<ApplicationDbContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
-
+//                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                    options.UseMySQL(Configuration["MySqlConn"]));
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();

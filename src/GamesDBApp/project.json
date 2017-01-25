@@ -1,4 +1,4 @@
-﻿{
+{
   "userSecretsId": "aspnet-GamesDBApp-fee93079-bff4-4652-9a9d-5710296a29dd",
 
   "dependencies": {
@@ -41,10 +41,11 @@
       "version": "1.0.0-preview2-final",
       "type": "build"
     },
-    "Microsoft.VisualStudio.Web.CodeGenerators.Mvc":  {
+    "Microsoft.VisualStudio.Web.CodeGenerators.Mvc": {
       "version": "1.0.0-preview2-final",
       "type": "build"
-    }
+    },
+    "SapientGuardian.EntityFrameworkCore.MySql": "7.1.17"
   },
 
   "tools": {
