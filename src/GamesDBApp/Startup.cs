@@ -57,9 +57,8 @@ namespace GamesDBApp
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
                 {
                     // Lockout settings
-                    //TODO: Discuss with team lockout period and number of attempts (3 might be too low)
                     options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
-                    options.Lockout.MaxFailedAccessAttempts = 3;
+                    options.Lockout.MaxFailedAccessAttempts = 10;
                     
 
                     //Cookie settings
