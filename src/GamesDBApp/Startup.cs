@@ -59,7 +59,7 @@ namespace GamesDBApp
                     // Lockout settings
                     options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
                     options.Lockout.MaxFailedAccessAttempts = 10;
-                    
+
 
                     //Cookie settings
                     options.Cookies.ApplicationCookie.ExpireTimeSpan = TimeSpan.FromDays(5);
@@ -68,6 +68,15 @@ namespace GamesDBApp
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
+            services.Configure<EmailSettings>(options =>
+            {
+                options.ApiKey = "api:"+Configuration["EmailApiKey"];
+                options.BaseUri = Configuration["EmailBaseUri"];
+                options.RequestUri = Configuration["EmailRequestUri"];
+                options.From = Configuration["EmailFrom"];
+            });
+
+            services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));
 
             services.AddMvc();
 
