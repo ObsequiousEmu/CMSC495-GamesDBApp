@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace GamesDBApp.Services
 {
-    public interface ISmsSender
+    public interface ISmsSender 
     {
         Task SendSmsAsync(string number, string message);
     }
