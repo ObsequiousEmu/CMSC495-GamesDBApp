@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace GamesDBApp.Services
 {
-    public class EmailSettings
+    public class EmailSettings 
     {
         public string ApiKey { get; set; }
         public string BaseUri { get; set; }
