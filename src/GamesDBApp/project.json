@@ -45,7 +45,12 @@
       "version": "1.0.0-preview2-final",
       "type": "build"
     },
-    "SapientGuardian.EntityFrameworkCore.MySql": "7.1.19"
+
+=======
+    "SapientGuardian.EntityFrameworkCore.MySql": "7.1.19",
+    "SendGrid.NetCore": "1.0.0-rtm-00002",
+    "Microsoft.Extensions.Options": "1.1.0"
+
   },
 
   "tools": {

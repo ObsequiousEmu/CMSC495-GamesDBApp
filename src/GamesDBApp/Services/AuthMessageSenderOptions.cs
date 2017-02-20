@@ -5,8 +5,11 @@ using System.Threading.Tasks;
 
 namespace GamesDBApp.Services
 {
-    public interface ISmsSender 
+    public class AuthMessageSenderOptions
     {
-        Task SendSmsAsync(string number, string message);
+        public string SendGridUser { get; set; }
+        public string SendGridKey { get; set; } 
     }
+
+
 }
