@@ -27,7 +27,7 @@ namespace GamesDBApp.Models
         [DisplayFormat(DataFormatString = "{0:MM-dd-yyyy}", ApplyFormatInEditMode = true)]
         [Display(Name="Release Date")]
         public DateTime ReleaseDate { get; set; }
-
+        public int Rating { get; set; }
         
     }
 }
