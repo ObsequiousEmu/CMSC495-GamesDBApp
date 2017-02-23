@@ -51,6 +51,9 @@ namespace GamesDBApp
 //                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
                     options.UseMySQL(Configuration["MySqlConn"]));
 
+            services.AddDbContext<RatingsContext>(options =>
+                options.UseMySQL(Configuration["MySqlConn"]));
+
             services.AddDbContext<ApplicationDbContext>(options =>
 //                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
                     options.UseMySQL(Configuration["MySqlConn"]));
