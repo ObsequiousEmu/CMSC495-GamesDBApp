@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace GamesDBApp.Migrations
 {
-    public partial class testDbMigrate : Migration
+    public partial class ohgodwhy : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -16,7 +16,8 @@ namespace GamesDBApp.Migrations
                         .Annotation("MySQL:AutoIncrement", true),
                     Developer = table.Column<string>(maxLength: 100, nullable: false),
                     Genre = table.Column<string>(maxLength: 100, nullable: false),
-                    Platform = table.Column<string>(nullable: true),
+                    Platform = table.Column<string>(maxLength: 100, nullable: false),
+                    Rating = table.Column<double>(nullable: false),
                     ReleaseDate = table.Column<DateTime>(nullable: false),
                     Title = table.Column<string>(maxLength: 100, nullable: false)
                 },

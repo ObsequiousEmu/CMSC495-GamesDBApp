@@ -28,7 +28,11 @@ namespace GamesDBApp.Migrations
                         .IsRequired()
                         .HasAnnotation("MaxLength", 100);
 
-                    b.Property<int>("Rating");
+                    b.Property<string>("Platform")
+                        .IsRequired()
+                        .HasAnnotation("MaxLength", 100);
+
+                    b.Property<double>("Rating");
 
                     b.Property<DateTime>("ReleaseDate");
 

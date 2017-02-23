@@ -31,7 +31,7 @@ namespace GamesDBApp.Models
         [StringLength(100)]
         [RegularExpression(@"^[a-zA-Z0-9''--/\'\s]*$", ErrorMessage = "Developer must contain only alphanumeric characters.")]
         public string Platform { get; set; }
-
+        public double Rating { get; set; }
         
     }
 }

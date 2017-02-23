@@ -8,8 +8,8 @@ using GamesDBApp.Data;
 namespace GamesDBApp.Migrations
 {
     [DbContext(typeof(GamesContext))]
-    [Migration("20170220012744_Inital")]
-    partial class Inital
+    [Migration("20170223033000_ohgodwhy")]
+    partial class ohgodwhy
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -28,6 +28,12 @@ namespace GamesDBApp.Migrations
                     b.Property<string>("Genre")
                         .IsRequired()
                         .HasAnnotation("MaxLength", 100);
+
+                    b.Property<string>("Platform")
+                        .IsRequired()
+                        .HasAnnotation("MaxLength", 100);
+
+                    b.Property<double>("Rating");
 
                     b.Property<DateTime>("ReleaseDate");
 
