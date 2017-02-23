@@ -18,6 +18,7 @@ namespace GamesDBApp
 {
     public class Startup
     {
+
         public Startup(IHostingEnvironment env)
         {
             var builder = new ConfigurationBuilder()
@@ -36,7 +37,7 @@ namespace GamesDBApp
 
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
-        } 
+        }
 
         public IConfigurationRoot Configuration { get; }
 
@@ -47,34 +48,48 @@ namespace GamesDBApp
             services.AddApplicationInsightsTelemetry(Configuration);
 
             services.AddDbContext<GamesContext>(options =>
-            //TODO: Temporarily left for ease of troubleshooting, clean me later 
-//                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                    //TODO: Temporarily left for ease of troubleshooting, clean me later 
+                    //                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
                     options.UseMySQL(Configuration["MySqlConn"]));
 
             services.AddDbContext<ApplicationDbContext>(options =>
-//                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+                    //                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
                     options.UseMySQL(Configuration["MySqlConn"]));
 
             services.AddIdentity<ApplicationUser, IdentityRole>(options =>
-                {
-                    // Lockout settings
-                    options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
-                    options.Lockout.MaxFailedAccessAttempts = 10;
-                    
+            {
+                // Configure Require Confirmed Email
+                options.SignIn.RequireConfirmedEmail = true;
 
-                    //Cookie settings
-                    options.Cookies.ApplicationCookie.ExpireTimeSpan = TimeSpan.FromDays(5);
-                    options.Cookies.ApplicationCookie.SlidingExpiration = true;
-                })
+                // Lockout settings
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                options.Lockout.MaxFailedAccessAttempts = 10;
+
+
+                //Cookie settings
+                options.Cookies.ApplicationCookie.ExpireTimeSpan = TimeSpan.FromDays(5);
+                options.Cookies.ApplicationCookie.SlidingExpiration = true;
+            })
                 .AddEntityFrameworkStores<ApplicationDbContext>()
                 .AddDefaultTokenProviders();
 
+            services.Configure<EmailSettings>(options =>
+            {
+                options.ApiKey = "api:" + Configuration["EmailApiKey"];
+                options.BaseUri = Configuration["EmailBaseUri"];
+                options.RequestUri = Configuration["EmailRequestUri"];
+                options.From = Configuration["EmailFrom"];
+            });
+
+            services.Configure<EmailSettings>(Configuration.GetSection("EmailSettings"));
 
             services.AddMvc();
 
             // Add application services.
             services.AddTransient<IEmailSender, AuthMessageSender>();
             services.AddTransient<ISmsSender, AuthMessageSender>();
+            services.Configure<AuthMessageSenderOptions>(Configuration);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
